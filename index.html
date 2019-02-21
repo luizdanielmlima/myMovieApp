@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Movie App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="d-flex mt-5">
+        <h1 class="display-4">My Movie App</h1>
+        <p class="text-muted">
+          powered by
+          <a class="text-warning" href="https://www.themoviedb.org/"
+            >The Movie DB</a
+          >
+        </p>
+      </div>
+      <hr />
+      <div>
+        <div>
+          <form id="searchMovieForm">
+            <div class="row">
+              <div class="col-4">
+                <label for="movieGenre">Genre</label>
+                <select class="form-control" id="movieGenre">
+                  <option>All Genres</option>
+                  <option>Action</option>
+                  <option>Adventure</option>
+                  <option>Action</option>
+                  <option>Comedy</option>
+                  <option>Documentary</option>
+                  <option>Drama</option>
+                  <option>Family</option>
+                  <option>Horror</option>
+                  <option>Mistery</option>
+                  <option>Romance</option>
+                  <option>Science Fiction</option>
+                  <option>Thriller</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <label for="movieYear">Year Released</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="movieYear"
+                  value="2019"
+                  placeholder="type year"
+                />
+              </div>
+              <div class="col-4">
+                <label for="movieSortBy">Sort By</label>
+                <select class="form-control" id="movieSortBy">
+                  <option>Rating Ascending</option>
+                  <option>Rating Descending</option>
+                  <option>Popularity Ascending</option>
+                  <option>Popularity Descending</option>
+                  <option>Title(A-Z)</option>
+                  <option>Title(Z-A)</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <button class="btn btn-warning" type="submit" id="getMoviesBt">
+                    SEARCH
+                  </button>         
+              </div>
+            </div>
+          </form>
+      </div>
+      <h2 class="mt-4 mb-4">Results:</h2>
+      <div id="output" class="movielist"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
