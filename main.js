@@ -2,23 +2,19 @@ document
   .getElementById("searchMovieForm")
   .addEventListener("submit", getMoviesData);
 
-//NOT USED ANYMORE, keeping it just to know the API options...
-// let sortbyOptions = [
-//   "popularity.asc",
-//   "popularity.desc",
-//   "release_date.asc",
-//   "release_date.desc",
-//   "revenue.asc",
-//   "revenue.desc",
-//   "primary_release_date.asc",
-//   "primary_release_date.desc",
-//   "original_title.asc",
-//   "original_title.desc",
-//   "vote_average.asc",
-//   "vote_average.desc",
-//   "vote_count.asc",
-//   "vote_count.desc"
-// ];
+let apiKey = "";
+getKey();
+
+//gets api key from apikey.txt
+function getKey() {
+  var self = this;
+  fetch("apikey.txt")
+    .then(res => res.text())
+    .then(data => {
+      apiKey = data;
+    })
+    .catch(err => console.log(err));
+}
 
 //function to get form form values
 function getInputVal(id) {
@@ -30,14 +26,23 @@ function getMoviesData(e) {
 
   //Get values
   let genre = getInputVal("movieGenre");
-  let yearFrom = getInputVal("movieYearFrom");
-  let yearTo = getInputVal("movieYearTo");
-  let sortBy = getInputVal("movieSortBy");
-  console.log(`movie genre:${genre}, yearTo:${yearTo}, sortBy:${sortBy}`);
+  if (genre === "all") {
+    genreQuery = ""; //all genres was selected
+  } else {
+    genreQuery = `with_genres=${genre}`;
+  }
 
-  //TODO: use inputs from form to get data from TMDB
+  let yearFrom = getInputVal("movieYearFrom");
+  let yearFromQuery = `primary_release_date.gte=${yearFrom}-01-01`;
+
+  let yearTo = getInputVal("movieYearTo");
+  let yearToQuery = `primary_release_date.lte=${yearTo}-01-01`;
+
+  let sortBy = getInputVal("movieSortBy");
+  let sortByQuery = `sort_by=${sortBy}`;
+
   fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=891a2d7d763b8e20d78ae746c8986811&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=1&with_genres=${genre}&primary_release_date.gte=${yearFrom}-01-01&primary_release_date.lte=${yearTo}-01-01`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&${sortByQuery}&include_adult=false&include_video=false&page=1&${genreQuery}&${yearFromQuery}&${yearToQuery}`
   )
     .then(res => res.json())
     .then(data => {
