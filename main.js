@@ -2,34 +2,23 @@ document
   .getElementById("searchMovieForm")
   .addEventListener("submit", getMoviesData);
 
-let sortbyOptions = [
-  "popularity.asc",
-  "popularity.desc",
-  "release_date.asc",
-  "release_date.desc",
-  "revenue.asc",
-  "revenue.desc",
-  "primary_release_date.asc",
-  "primary_release_date.desc",
-  "original_title.asc",
-  "original_title.desc",
-  "vote_average.asc",
-  "vote_average.desc",
-  "vote_count.asc",
-  "vote_count.desc"
-];
-let releaseDateGTEOptions = [
-  "1930-01-01",
-  "1940-01-01",
-  "1970-01-01",
-  "1980-01-01",
-  "1990-01-01",
-  "2000-01-01",
-  "2010-01-01"
-];
-
-let sortby = sortbyOptions[5];
-let releaseDateGTE = releaseDateGTEOptions[6];
+//NOT USED ANYMORE, keeping it just to know the API options...
+// let sortbyOptions = [
+//   "popularity.asc",
+//   "popularity.desc",
+//   "release_date.asc",
+//   "release_date.desc",
+//   "revenue.asc",
+//   "revenue.desc",
+//   "primary_release_date.asc",
+//   "primary_release_date.desc",
+//   "original_title.asc",
+//   "original_title.desc",
+//   "vote_average.asc",
+//   "vote_average.desc",
+//   "vote_count.asc",
+//   "vote_count.desc"
+// ];
 
 //function to get form form values
 function getInputVal(id) {
@@ -41,13 +30,14 @@ function getMoviesData(e) {
 
   //Get values
   let genre = getInputVal("movieGenre");
-  let year = getInputVal("movieYear");
+  let yearFrom = getInputVal("movieYearFrom");
+  let yearTo = getInputVal("movieYearTo");
   let sortBy = getInputVal("movieSortBy");
-  console.log(`movie genre:${genre}, year:${year}, sortBy:${sortBy}`);
+  console.log(`movie genre:${genre}, yearTo:${yearTo}, sortBy:${sortBy}`);
 
-  //TODO: use inputs from form to get data from tmdb
+  //TODO: use inputs from form to get data from TMDB
   fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=891a2d7d763b8e20d78ae746c8986811&language=en-US&sort_by=${sortby}&include_adult=false&include_video=false&page=1&with_genres=18&primary_release_date.gte=${releaseDateGTE}`
+    `https://api.themoviedb.org/3/discover/movie?api_key=891a2d7d763b8e20d78ae746c8986811&language=en-US&sort_by=${sortBy}&include_adult=false&include_video=false&page=1&with_genres=${genre}&primary_release_date.gte=${yearFrom}-01-01&primary_release_date.lte=${yearTo}-01-01`
   )
     .then(res => res.json())
     .then(data => {

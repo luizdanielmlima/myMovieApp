@@ -30,43 +30,61 @@
         <div>
           <form id="searchMovieForm">
             <div class="row">
-              <div class="col-4">
+              <div class="col-3">
                 <label for="movieGenre">Genre</label>
                 <select class="form-control" id="movieGenre">
-                  <option>All Genres</option>
-                  <option>Action</option>
-                  <option>Adventure</option>
-                  <option>Action</option>
-                  <option>Comedy</option>
-                  <option>Documentary</option>
-                  <option>Drama</option>
-                  <option>Family</option>
-                  <option>Horror</option>
-                  <option>Mistery</option>
-                  <option>Romance</option>
-                  <option>Science Fiction</option>
-                  <option>Thriller</option>
+                  <option value="0">All Genres</option>
+                  <option value="28">Action</option>
+                  <option value="12">Adventure</option>
+                  <option value="16">Animated</option>
+                  <option value="35">Comedy</option>
+                  <option value="80">Crime</option>
+                  <option value="99">Documentary</option>
+                  <option value="18">Drama</option>
+                  <option value="10751">Family</option>
+                  <option value="14">Fantasy</option>
+                  <option value="36">History</option>
+                  <option value="27">Horror</option>
+                  <option value="9648">Mistery</option>
+                  <option value="10402">Music</option>
+                  <option value="10749">Romance</option>
+                  <option value="878">Sci-Fi</option>
+                  <option value="53">Thriller</option>
+                  <option value="37">Western</option>
                 </select>
               </div>
               <div class="col-2">
-                <label for="movieYear">Year Released</label>
+                <label for="movieYearFrom">Year (From)</label>
                 <input
                   type="number"
                   class="form-control"
-                  id="movieYear"
-                  value="2019"
+                  id="movieYearFrom"
+                  value="2018"
                   placeholder="type year"
                 />
               </div>
-              <div class="col-4">
+              <div class="col-2">
+                  <label for="movieYearTo">Year (To)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="movieYearTo"
+                    value="2019"
+                    placeholder="type year"
+                  />
+                </div>
+              <div class="col-3">
                 <label for="movieSortBy">Sort By</label>
                 <select class="form-control" id="movieSortBy">
-                  <option>Rating Ascending</option>
-                  <option>Rating Descending</option>
-                  <option>Popularity Ascending</option>
-                  <option>Popularity Descending</option>
-                  <option>Title(A-Z)</option>
-                  <option>Title(Z-A)</option>
+                  <option value="popularity.asc">Popularity Ascending</option>
+                  <option value="popularity.desc">Popularity Descending</option>
+                  <option value="revenue.asc">Revenue Ascending</option>
+                  <option value="revenue.desc">Revenue Descending</option>
+                  <option value="vote_average.asc">Rating Ascending</option>
+                  <option value="vote_average.desc">Rating Descending</option>
+                  <option value="vote_count.asc">Number of Votes Ascending</option>
+                  <option value="vote_count.desc">Number of Votes Descending</option>
+                  
                 </select>
               </div>
               <div class="col-2">
