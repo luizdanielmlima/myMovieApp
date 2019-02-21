@@ -13,6 +13,12 @@
     />
     <link rel="stylesheet" type="text/css" href="theme2.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
   </head>
 
   <body>
@@ -27,7 +33,7 @@
             >
           </p>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color:#333">
           <div>
             <form id="searchMovieForm">
               <div class="search-bar">
@@ -65,22 +71,12 @@
                   />
                 </div>
                 <div>
-                  <label for="movieSortBy">Sort By</label>
+                  <label for="movieSortBy">Top Movies By:</label>
                   <select class="form-control" id="movieSortBy">
-                    <option value="popularity.desc"
-                      >Popularity Descending</option
-                    >
-                    <option value="popularity.asc">Popularity Ascending</option>
-                    <option value="revenue.desc">Revenue Descending</option>
-                    <option value="revenue.asc">Revenue Ascending</option>
-                    <option value="vote_average.desc">Rating Descending</option>
-                    <option value="vote_average.asc">Rating Ascending</option>
-                    <option value="vote_count.desc"
-                      >Number of Votes Descending</option
-                    >
-                    <option value="vote_count.asc"
-                      >Number of Votes Ascending</option
-                    >
+                    <option value="popularity.desc">Popularity</option>
+                    <option value="revenue.desc">Revenue</option>
+                    <option value="vote_average.desc">Rating</option>
+                    <option value="vote_count.desc">Number of Votes</option>
                   </select>
                 </div>
                 <div class="search-btn">
@@ -99,8 +95,11 @@
           <h2 class="mt-4 mb-4">Results:</h2>
           <div id="output" class="movielist"></div>
         </div>
-        <div class="card-footer text-light text-right">
-          Developed by Luiz Daniel Lima
+        <div class="card-footer d-flex flex-row-reverse">
+          <a class="text-warning ml-5" href="https://github.com/luizdanielmlima"
+            ><i class="fab fa-github"></i> Get the code on my Github!</a
+          >
+          <p class="text-light">Developed by Luiz Daniel Lima</p>
         </div>
       </div>
     </div>
