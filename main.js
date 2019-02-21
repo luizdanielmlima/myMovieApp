@@ -51,13 +51,18 @@ function getMoviesData() {
               <div class="card mb-3" style="max-width:400px">
                 <img class="card-img-top" src=${imgFullPath}>
                 <div class="card-body mb-3">
-                  <h5 class="card-title text-warning">${movie.title}</h5>
-                  <p class="text-secondary">${movie.release_date}</p>
+                  <h5 class="card-title text-primary">${movie.title}</h5>
+                  <p class="text-light">${movie.release_date}</p>
                 </div>
               </div>
             `;
       });
       document.getElementById("output").innerHTML = output;
+    })
+    .catch(err => {
+      console.log(err);
+      document.getElementById("output").innerHTML =
+        "An error has ocurred while trying to get the movie information, please check your internet connection and refresh this page";
     });
 }
 
