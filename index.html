@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Movie App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="theme2.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card mt-3">
+        <div class="card-header">
+          <h1 class="display-4 text-light">My Movie App</h1>
+          <p class="text-light">
+            powered by
+            <a class="text-warning" href="https://www.themoviedb.org/"
+              >The Movie DB</a
+            >
+          </p>
+        </div>
+        <div class="card-body" style="background-color:#333">
+          <div>
+            <form id="searchMovieForm">
+              <div class="search-bar">
+                <div>
+                  <label for="movieGenre">Genre</label>
+                  <select class="form-control" id="movieGenre">
+                    <option value="all">All Genres</option>
+                    <option value="28">Action</option>
+                    <option value="12">Adventure</option>
+                    <option value="16">Animated</option>
+                    <option value="35">Comedy</option>
+                    <option value="80">Crime</option>
+                    <option value="99">Documentary</option>
+                    <option value="18">Drama</option>
+                    <option value="10751">Family</option>
+                    <option value="14">Fantasy</option>
+                    <option value="36">History</option>
+                    <option value="27">Horror</option>
+                    <option value="9648">Mistery</option>
+                    <option value="10402">Music</option>
+                    <option value="10749">Romance</option>
+                    <option value="878">Sci-Fi</option>
+                    <option value="53">Thriller</option>
+                    <option value="37">Western</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="movieYear">Year</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="movieYear"
+                    value="2018"
+                    placeholder="type year"
+                  />
+                </div>
+                <div>
+                  <label for="movieSortBy">Top Movies By:</label>
+                  <select class="form-control" id="movieSortBy">
+                    <option value="popularity.desc">Popularity</option>
+                    <option value="revenue.desc">Revenue</option>
+                    <option value="vote_average.desc">Rating</option>
+                    <option value="vote_count.desc">Number of Votes</option>
+                  </select>
+                </div>
+                <div class="search-btn">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    id="getMoviesBt"
+                  >
+                    SEARCH
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <h2 class="mt-4 mb-4">Results:</h2>
+          <div id="output" class="movielist"></div>
+        </div>
+        <div class="card-footer d-flex flex-row-reverse">
+          <a class="text-warning ml-5" href="https://github.com/luizdanielmlima"
+            ><i class="fab fa-github"></i> Get the code on my Github!</a
+          >
+          <p class="text-light">Developed by Luiz Daniel Lima</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
