@@ -4,6 +4,13 @@ body {
   background-color: #eee;
 }
 
+.search-bar {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
+  align-items: end;
+}
+
 .movielist {
   display: grid;
   grid-gap: 10px;

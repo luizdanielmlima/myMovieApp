@@ -1,6 +1,4 @@
-document
-  .getElementById("searchMovieForm")
-  .addEventListener("submit", getMoviesData);
+document.getElementById("searchMovieForm").addEventListener("submit", submit);
 
 let apiKey = "";
 getKey();
@@ -12,18 +10,17 @@ function getKey() {
     .then(res => res.text())
     .then(data => {
       apiKey = data;
+      getMoviesData();
     })
     .catch(err => console.log(err));
 }
 
-//function to get form form values
+//function to get form values
 function getInputVal(id) {
   return document.getElementById(id).value;
 }
 
-function getMoviesData(e) {
-  e.preventDefault();
-
+function getMoviesData() {
   //Get values
   let genre = getInputVal("movieGenre");
   if (genre === "all") {
@@ -32,11 +29,9 @@ function getMoviesData(e) {
     genreQuery = `with_genres=${genre}`;
   }
 
-  let yearFrom = getInputVal("movieYearFrom");
-  let yearFromQuery = `primary_release_date.gte=${yearFrom}-01-01`;
-
-  let yearTo = getInputVal("movieYearTo");
-  let yearToQuery = `primary_release_date.lte=${yearTo}-01-01`;
+  let year = getInputVal("movieYear");
+  let yearFromQuery = `primary_release_date.gte=${year}-01-01`;
+  let yearToQuery = `primary_release_date.lte=${year}-12-30`;
 
   let sortBy = getInputVal("movieSortBy");
   let sortByQuery = `sort_by=${sortBy}`;
@@ -53,15 +48,20 @@ function getMoviesData(e) {
       movielist.forEach(function(movie) {
         imgFullPath = `${imgBasePath}${movie.poster_path}`;
         output += `
-                <div class="card mb-3" style="max-width:400px">
-                  <img class="card-img-top" src=${imgFullPath}>
-                  <div class="card-body mb-3">
-                    <h5 class="card-title text-primary">${movie.title}</h5>
-                    <p class="text-secondary">${movie.release_date}</p>
-                  </div>
+              <div class="card mb-3" style="max-width:400px">
+                <img class="card-img-top" src=${imgFullPath}>
+                <div class="card-body mb-3">
+                  <h5 class="card-title text-warning">${movie.title}</h5>
+                  <p class="text-secondary">${movie.release_date}</p>
                 </div>
-              `;
+              </div>
+            `;
       });
       document.getElementById("output").innerHTML = output;
     });
+}
+
+function submit(e) {
+  e.preventDefault();
+  getMoviesData();
 }
