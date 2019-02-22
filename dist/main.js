@@ -49,7 +49,7 @@ function getMoviesData() {
         imgFullPath = `${imgBasePath}${movie.poster_path}`;
         let yearOnlyString = movie.release_date.substring(0, 4);
         let showMoreToRead = movie.overview.length < 250 ? "" : "  (...)";
-        let limitOverview = movie.overview.substring(0, 250) + showMoreToRead;
+        let limitedSinopse = movie.overview.substring(0, 250) + showMoreToRead;
 
         output += `
         <figure class="movie">
@@ -60,7 +60,7 @@ function getMoviesData() {
           </div>
           <figcaption>
             <h6 class="text-primary">${movie.title}</h6>
-            <p class="small-text">${limitOverview}</p>
+            <p class="small-text">${limitedSinopse}</p>
             <div class="rating-panel">
               <p class="small-text">rating</p>
               <h5 class="movie-badge">${movie.vote_average}</h5>

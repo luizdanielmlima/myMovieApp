@@ -27,6 +27,7 @@ body {
 
 .movie {
   position: relative;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -77,8 +78,9 @@ body {
 }
 
 .movie figcaption .rating-panel {
+  color: #f1461b;
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   -webkit-transform: translate3d(0, 0px, 0);
   transform: translate3d(0, 0px, 0);
 }
@@ -105,18 +107,23 @@ body {
 
 .movie:hover figcaption .rating-panel h5 {
   padding: 6px 10px;
-  color: red;
   background-color: white;
   border-radius: 5px;
 }
 
-.movie:hover figcaption > h5,
 .movie:hover figcaption > h6,
 .movie:hover figcaption > p {
   -webkit-transform: translate3d(0, 20px, 0);
   transform: translate3d(0, 20px, 0);
   -webkit-transition: opacity 0.35s, -webkit-transform 1s;
   transition: opacity 0.35s, transform 1s;
+}
+
+.movie:hover figcaption .rating-panel {
+  -webkit-transform: translate3d(0, -10px, 0);
+  transform: translate3d(0, -10px, 0);
+  -webkit-transition: opacity 0.15s, -webkit-transform 1s;
+  transition: opacity 0.15s, transform 1s;
 }
 
 .movie:hover figcaption::before {
