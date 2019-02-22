@@ -21,8 +21,114 @@ body {
 
 .movielist {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 25px 10px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.movie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #222;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.movie img {
+  width: 100%;
+  border-top: 20px;
+}
+
+.movie .body {
+  padding: 10px;
+  text-align: center;
+}
+
+.movie .small-text {
+  font-size: 0.8em;
+}
+
+.movie figcaption {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  padding: 10px 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.movie figcaption > h6 {
+  margin-top: 10px;
+  -webkit-transform: translate3d(0, 0px, 0);
+  transform: translate3d(0, 0px, 0);
+}
+
+.movie figcaption .rating-panel {
+  color: #f1461b;
+  position: absolute;
+  bottom: 15px;
+  -webkit-transform: translate3d(0, 0px, 0);
+  transform: translate3d(0, 0px, 0);
+}
+
+.movie figcaption::before {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  content: "";
+  opacity: 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0, 1);
+  transform: scale(0, 1);
+}
+
+.movie:hover figcaption {
+  opacity: 1;
+}
+
+.movie:hover figcaption .rating-panel h5 {
+  padding: 6px 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.movie:hover figcaption > h6,
+.movie:hover figcaption > p {
+  -webkit-transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 20px, 0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 1s;
+  transition: opacity 0.35s, transform 1s;
+}
+
+.movie:hover figcaption .rating-panel {
+  -webkit-transform: translate3d(0, -10px, 0);
+  transform: translate3d(0, -10px, 0);
+  -webkit-transition: opacity 0.15s, -webkit-transform 1s;
+  transition: opacity 0.15s, transform 1s;
+}
+
+.movie:hover figcaption::before {
+  opacity: 0.8;
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 
 @media screen and (max-width: 768px) {

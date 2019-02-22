@@ -48,18 +48,39 @@ function getMoviesData() {
       movielist.forEach(function(movie) {
         imgFullPath = `${imgBasePath}${movie.poster_path}`;
         let yearOnlyString = movie.release_date.substring(0, 4);
+        let showMoreToRead = movie.overview.length < 250 ? "" : "  (...)";
+        let limitedSinopse = movie.overview.substring(0, 250) + showMoreToRead;
+
         output += `
-              <div class="card mb-3" style="max-width:400px">
-                <img class="card-img-top" src=${imgFullPath}>
-                <div class="card-body mb-3">
-                  <h6 class="text-primary text-center">${movie.title}</h6>
-                  <p class="text-light text-center">${yearOnlyString}</p>
-                </div>
-                <div class="card-footer d-flex"><p class="text-light ml-4 mr-2">RATING:</p><p class="badge badge-dark">${
-                  movie.vote_average
-                }</p></div>
-              </div>
-            `;
+        <figure class="movie">
+          <img src=${imgFullPath}>
+          <div class="body">
+            <h6 class="text-primary">${movie.title}</h6>
+            <p class="small-text">${yearOnlyString}</p>
+          </div>
+          <figcaption>
+            <h6 class="text-primary">${movie.title}</h6>
+            <p class="small-text">${limitedSinopse}</p>
+            <div class="rating-panel">
+              <p class="small-text">rating</p>
+              <h5 class="movie-badge">${movie.vote_average}</h5>
+            </div>
+          </figcaption>
+        </figure>
+      `;
+
+        // output += `
+        //       <div class="card mb-3" style="max-width:400px">
+        //         <img class="card-img-top" src=${imgFullPath}>
+        //         <div class="card-body mb-3">
+        //           <h6 class="text-primary text-center">${movie.title}</h6>
+        //           <p class="text-light text-center">${yearOnlyString}</p>
+        //         </div>
+        //         <div class="card-footer d-flex"><p class="text-light ml-4 mr-2">RATING:</p><p class="badge badge-dark">${
+        //           movie.vote_average
+        //         }</p></div>
+        //       </div>
+        //     `;
       });
       document.getElementById("output").innerHTML = output;
     })
