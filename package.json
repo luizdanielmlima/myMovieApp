@@ -1,5 +1,5 @@
 {
-  "name": "myMovieApp",
+  "name": "mymovieapp",
   "version": "1.0.0",
   "description": "Simple application I´ve been working on, to learn how to use an API, so I chose The Movie DB API (https://developers.themoviedb.org)",
   "main": "main.js",

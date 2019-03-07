@@ -46,6 +46,7 @@ function getMoviesData() {
       let movielist = data.results;
       // console.log(movielist);
       movielist.forEach(function(movie) {
+        //console.log(`id:${movie.id}|movie: ${movie.title}`);
         imgFullPath = `${imgBasePath}${movie.poster_path}`;
         let yearOnlyString = movie.release_date.substring(0, 4);
         let showMoreToRead = movie.overview.length < 250 ? "" : "  (...)";
@@ -68,19 +69,6 @@ function getMoviesData() {
           </figcaption>
         </figure>
       `;
-
-        // output += `
-        //       <div class="card mb-3" style="max-width:400px">
-        //         <img class="card-img-top" src=${imgFullPath}>
-        //         <div class="card-body mb-3">
-        //           <h6 class="text-primary text-center">${movie.title}</h6>
-        //           <p class="text-light text-center">${yearOnlyString}</p>
-        //         </div>
-        //         <div class="card-footer d-flex"><p class="text-light ml-4 mr-2">RATING:</p><p class="badge badge-dark">${
-        //           movie.vote_average
-        //         }</p></div>
-        //       </div>
-        //     `;
       });
       document.getElementById("output").innerHTML = output;
     })
