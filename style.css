@@ -19,6 +19,47 @@ body {
   justify-self: end;
 }
 
+.output-container {
+  position: relative;
+  min-height: 400px;
+}
+
+/* START of loading spinner */
+.spinner-container {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  border-left-color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+/* END of loading spinner */
+
 .movielist {
   display: grid;
   grid-gap: 25px 10px;
@@ -90,7 +131,7 @@ body {
   right: 20px;
   bottom: 20px;
   left: 20px;
-  content: "";
+  content: '';
   opacity: 0;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;

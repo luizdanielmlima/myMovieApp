@@ -1,12 +1,14 @@
-document.getElementById("searchMovieForm").addEventListener("submit", submit);
+document.getElementById('searchMovieForm').addEventListener('submit', submit);
+let spinner = document.getElementById('spinner-container');
 
-let apiKey = "";
+let apiKey = '';
+let isLoading;
 getKey();
 
-//gets api key from apikey.txt
+// gets api key from apikey.txt
 function getKey() {
   var self = this;
-  fetch("apikey.txt")
+  fetch('apikey.txt')
     .then(res => res.text())
     .then(data => {
       apiKey = data;
@@ -15,25 +17,30 @@ function getKey() {
     .catch(err => console.log(err));
 }
 
-//function to get form values
+// function to get form values
 function getInputVal(id) {
   return document.getElementById(id).value;
 }
 
 function getMoviesData() {
-  //Get values
-  let genre = getInputVal("movieGenre");
-  if (genre === "all") {
-    genreQuery = ""; //all genres was selected
+  // Shows spinner and hides any movie content
+  isLoading = true;
+  document.getElementById('output').innerHTML = '';
+  spinner.setAttribute('class', 'spinner-container show');
+
+  // Get values
+  let genre = getInputVal('movieGenre');
+  if (genre === 'all') {
+    genreQuery = ''; //all genres was selected
   } else {
     genreQuery = `with_genres=${genre}`;
   }
 
-  let year = getInputVal("movieYear");
+  let year = getInputVal('movieYear');
   let yearFromQuery = `primary_release_date.gte=${year}-01-01`;
   let yearToQuery = `primary_release_date.lte=${year}-12-30`;
 
-  let sortBy = getInputVal("movieSortBy");
+  let sortBy = getInputVal('movieSortBy');
   let sortByQuery = `sort_by=${sortBy}`;
 
   fetch(
@@ -41,14 +48,17 @@ function getMoviesData() {
   )
     .then(res => res.json())
     .then(data => {
-      let output = "";
-      let imgBasePath = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
+      isLoading = false;
+      spinner.setAttribute('class', 'spinner-container hide');
+
+      let output = '';
+      let imgBasePath = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
       let movielist = data.results;
-      // console.log(movielist);
       movielist.forEach(function(movie) {
+        //console.log(`id:${movie.id}|movie: ${movie.title}`);
         imgFullPath = `${imgBasePath}${movie.poster_path}`;
         let yearOnlyString = movie.release_date.substring(0, 4);
-        let showMoreToRead = movie.overview.length < 250 ? "" : "  (...)";
+        let showMoreToRead = movie.overview.length < 250 ? '' : '  (...)';
         let limitedSinopse = movie.overview.substring(0, 250) + showMoreToRead;
 
         output += `
@@ -68,26 +78,13 @@ function getMoviesData() {
           </figcaption>
         </figure>
       `;
-
-        // output += `
-        //       <div class="card mb-3" style="max-width:400px">
-        //         <img class="card-img-top" src=${imgFullPath}>
-        //         <div class="card-body mb-3">
-        //           <h6 class="text-primary text-center">${movie.title}</h6>
-        //           <p class="text-light text-center">${yearOnlyString}</p>
-        //         </div>
-        //         <div class="card-footer d-flex"><p class="text-light ml-4 mr-2">RATING:</p><p class="badge badge-dark">${
-        //           movie.vote_average
-        //         }</p></div>
-        //       </div>
-        //     `;
       });
-      document.getElementById("output").innerHTML = output;
+      document.getElementById('output').innerHTML = output;
     })
     .catch(err => {
       console.log(err);
-      document.getElementById("output").innerHTML =
-        "An error has ocurred while trying to get the movie information, please check your internet connection and refresh this page";
+      document.getElementById('output').innerHTML =
+        'An error has ocurred while trying to get the movie information, please check your internet connection and refresh this page';
     });
 }
 
